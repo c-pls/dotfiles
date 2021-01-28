@@ -13,6 +13,34 @@ set cursorline
 set wildmenu
 filetype plugin indent on
 
+"Vim Vundle config
+set nocompatible        " be iMproved, required                           
+filetype off            " required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" let Vundle manage Vundle, required                                            
+Plugin 'VundleVim/Vundle.vim'   
+
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-fugitive'                                                     
+Plugin 'mattn/emmet-vim'
+
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+
+
+
+
+
+
+
+
+
+
 "Plugin Install"
 call plug#begin('~/.vim/autoload')
 
@@ -61,6 +89,10 @@ nnoremap <silent> <C-l> <c-w>l<CR>
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 nnoremap <Leader>f :NERDTreeToggle<Enter>
+
+map <C-n> :NERDTreeToggle<CR>
+
+
 autocmd VimEnter * NERDTree | wincmd p
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
     \ quit | endif
@@ -73,11 +105,7 @@ let g:pymode_lint_checkers = ["pylint"]
 let g:pymode_rope = 0
 
 
-"Compile in Java
-autocmd Filetype java set makeprg=javac\ %
-set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
-map <F9> :make<Return>:copen<Return>
-map <F10> :cprevious<Return>
-map <F11> :cnext<Return>
-
-
+"YouCompleteMe 
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:user_emmet_leader_key='<C-Z>'
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf_openframeworks.py"
