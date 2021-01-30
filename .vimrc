@@ -22,22 +22,12 @@ call vundle#begin()
 " let Vundle manage Vundle, required                                            
 Plugin 'VundleVim/Vundle.vim'   
 
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-fugitive'                                                     
 Plugin 'mattn/emmet-vim'
-
+Plugin 'davidhalter/jedi-vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
-
-
-
-
-
-
-
-
-
 
 
 
@@ -57,12 +47,6 @@ let g:ncm2#matcher = 'substrfuzzy'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 
-"Autocomplete python"
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2'
-Plug 'HansPinckaers/ncm2-jedi'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
 
 "Tagbar"
 Plug 'majutsushi/tagbar'
@@ -85,6 +69,10 @@ nnoremap <silent> <C-j> <c-w>j<CR>
 nnoremap <silent> <C-h> <c-w>h<CR>
 nnoremap <silent> <C-l> <c-w>l<CR>
 
+set splitbelow
+set splitright
+
+
 "NERDTreeToggle 
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -105,7 +93,24 @@ let g:pymode_lint_checkers = ["pylint"]
 let g:pymode_rope = 0
 
 
-"YouCompleteMe 
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:user_emmet_leader_key='<C-Z>'
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf_openframeworks.py"
+" Disable autocompletion (using deoplete instead)
+let g:jedi#completions_enabled = 1
+
+" All these mappings work only for python code:
+" Go to definition
+let g:jedi#goto_command = ',d'
+" Find ocurrences
+let g:jedi#usages_command = ',o'
+" Find assignments
+let g:jedi#goto_assignments_command = ',a'
+
+"Disable the signature
+let g:jedi#show_call_signatures = 0
+""""""When you start typing `from module.name<space>` jedi-vim automatically
+"can add the"import" statement and trigger the autocompletion popup.
+let g:jedi#smart_auto_mappings = 1
+
+
+"Running python code directly
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
