@@ -78,7 +78,7 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 nnoremap <Leader>f :NERDTreeToggle<Enter>
 
-map <C-n> :NERDTreeToggle<CR>
+map <C-m> :NERDTreeToggle<CR>
 
 
 autocmd VimEnter * NERDTree | wincmd p
