@@ -4,8 +4,7 @@ My personal Vim configurations using both Vundle and Plug
 
 1. Install Vim Plug
 - Open terminal
-- curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+- curl -fLo ~/.vim/autoload/plug.vim --create-dirs \https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 - create .vimrc file: vim ~/.vimrc
 
 Source: https://github.com/junegunn/vim-plug
