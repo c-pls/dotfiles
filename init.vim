@@ -16,6 +16,8 @@ Plug 'preservim/nerdcommenter'
 
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
+Plug 'shougo/deoplete.nvim'
+
 Plug 'deoplete-plugins/deoplete-jedi'
 
 Plug 'tpope/vim-surround'
@@ -39,6 +41,9 @@ Plug 'chiel92/vim-autoformat'
 Plug 'yggdroot/indentline'
 
 Plug 'vim-scripts/indentpython.vim'
+
+"Plug 'davidhalter/jedi-vim'
+
 call plug#end()
 
 
@@ -128,3 +133,6 @@ au BufWrite * :Autoformat
 
 "Tag bar
 nmap <F8> :TagbarToggle<CR>
+
+"Deoplete
+let g:deoplete#enable_at_startup = 1
