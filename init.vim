@@ -2,11 +2,14 @@ function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 
+set nocompatible
 call plug#begin('~/.vim/plugged')
 
 Plug 'jiangmiao/auto-pairs'
 
 Plug 'vim-airline/vim-airline'
+
+Plug 'sheerun/vim-polyglot'
 
 Plug 'NLKNguyen/papercolor-theme'
 
@@ -22,8 +25,6 @@ Plug 'deoplete-plugins/deoplete-jedi'
 
 Plug 'tpope/vim-surround'
 
-Plug 'tell-k/vim-autopep8'
-
 Plug 'ap/vim-css-color'
 
 Plug 'ghifarit53/tokyonight-vim'
@@ -36,8 +37,6 @@ Plug 'slim-template/vim-slim'
 
 Plug 'majutsushi/tagbar'
 
-Plug 'chiel92/vim-autoformat'
-
 Plug 'yggdroot/indentline'
 
 Plug 'vim-scripts/indentpython.vim'
@@ -45,6 +44,7 @@ Plug 'vim-scripts/indentpython.vim'
 "Plug 'davidhalter/jedi-vim'
 
 call plug#end()
+
 
 
 " Fundamental settings
@@ -74,22 +74,22 @@ set nowrap      "no line wrapping
 
 set termguicolors
 
-"colorscheme dracula
+colorscheme dracula
 
 
 " Config for paper color theme
-" set background=light
+"set background=light
 "colorscheme PaperColor
 
-" Config for oceanic theme
+"Config for oceanic theme
 "colorscheme OceanicNext
 
 "Config  Tokyo night style
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1
-colorscheme tokyonight
-let g:airline_theme = "tokyonight"
-let g:tokyonight_transparent_background = 1
+"let g:tokyonight_style = 'night' " available: night, storm
+"let g:tokyonight_enable_italic = 1
+"colorscheme tokyonight
+"let g:airline_theme = "tokyonight"
+"let g:tokyonight_transparent_background = 1
 
 "  set background=light
 "colorscheme solarized
@@ -123,16 +123,13 @@ let g:multi_cursor_quit_key='q'
 
 "Running python code directly
 autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-"autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
-"Autoformat
-let g:formatterpath = ['/some/path/to/a/folder', '/home/superman/formatters']
-
-noremap <Space> :Autoformat<CR>
-au BufWrite * :Autoformat
 
 "Tag bar
 nmap <F8> :TagbarToggle<CR>
 
 "Deoplete
 let g:deoplete#enable_at_startup = 1
+
+
