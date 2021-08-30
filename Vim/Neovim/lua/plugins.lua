@@ -1,162 +1,245 @@
-local fn = vim.fn
-local execute = vim.api.nvim_command
+local fn =
+    vim.fn
+local execute =
+    vim.api.nvim_command
 
 -- {{{ Auto install packer.nvim if not exists
-local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
+local install_path =
+    vim.fn.stdpath "data" ..
+    "/site/pack/packer/start/packer.nvim"
 
-if fn.empty(fn.glob(install_path)) > 0 then
-    execute('!git clone https://github.com/wbthomason/packer.nvim ' ..
-                install_path)
+if
+    fn.empty(
+        fn.glob(
+            install_path
+        )
+    ) >
+        0
+ then
+    execute(
+        "!git clone https://github.com/wbthomason/packer.nvim " ..
+            install_path
+    )
 end
 
-
- vim.cmd 'packadd packer.nvim'
- vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
+vim.cmd "packadd packer.nvim"
+vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
 -- }}}
 --
 --
-return require('packer').startup(function()
-    -- Packer can manage itself
-    use {'wbthomason/packer.nvim'}
+return require(
+    "packer"
+).startup(
+    function()
+        -- Packer can manage itself
+        use {
+            "wbthomason/packer.nvim"
+        }
 
-    -- { Color scheme
-     use 'joshdick/onedark.vim'
+        -- { Color scheme
+        use "joshdick/onedark.vim"
 
-     use 'tanvirtin/monokai.nvim'
+        use "tanvirtin/monokai.nvim"
 
-     use 'Th3Whit3Wolf/one-nvim'
+        use "Th3Whit3Wolf/one-nvim"
 
-     use 'sainnhe/sonokai'
+        use "sainnhe/sonokai"
 
-     use 'morhetz/gruvbox'
+        use "morhetz/gruvbox"
 
-     use 'ghifarit53/tokyonight-vim'
+        use "ghifarit53/tokyonight-vim"
 
-    -- }
+        -- }
 
-    --{ LSP
+        --{ LSP
 
-     use {'neovim/nvim-lspconfig'}
+        use {
+            "neovim/nvim-lspconfig"
+        }
 
-     use {'glepnir/lspsaga.nvim'}
+        use {
+            "glepnir/lspsaga.nvim"
+        }
 
-     use 'ray-x/lsp_signature.nvim'
+        use "ray-x/lsp_signature.nvim"
 
-     use 'nvim-lua/lsp-status.nvim'
+        use "nvim-lua/lsp-status.nvim"
 
-     use 'kabouzeid/nvim-lspinstall'
+        use "kabouzeid/nvim-lspinstall"
 
-    --}
+        --}
 
-    --{ Completion
-  use {
-  "hrsh7th/nvim-cmp",
-  requires = {
-    "hrsh7th/cmp-buffer",
-  }
-}
-  use 'hrsh7th/cmp-nvim-lsp'
- -- require('configs.nvim-cmp')
-    --}
-    --
+        --{ Completion
+        use {
+            "hrsh7th/nvim-cmp",
+            requires = {
+                "hrsh7th/cmp-buffer"
+            }
+        }
+        use "hrsh7th/cmp-nvim-lsp"
+        -- require('configs.nvim-cmp')
+        --}
+        --
 
+        -- Coq
+        use {
+            "ms-jpq/coq_nvim",
+            branch = "coq"
+        } -- main one
+        use {
+            "ms-jpq/coq.artifacts",
+            branch = "artifacts"
+        } -- 9000+ Snippets
+        require(
+            "configs.coq"
+        )
 
-    -- Coq
-  use { 'ms-jpq/coq_nvim', branch = 'coq'} -- main one
- use { 'ms-jpq/coq.artifacts', branch= 'artifacts'} -- 9000+ Snippets
- require('configs.coq')
+        --{ Fuzzy finder
+        use {
+            "nvim-telescope/telescope.nvim",
+            requires = {
+                {
+                    "nvim-lua/plenary.nvim"
+                }
+            }
+        }
+        use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+        require(
+            "configs.telescope"
+        )
+        --}
 
-    --{ Fuzzy finder
-    use {
-  'nvim-telescope/telescope.nvim',
-  requires = { {'nvim-lua/plenary.nvim'} }
-}
-    --}
+        -- { Language helper
+        use {
+            "sheerun/vim-polyglot",
+            cmd = "PolyglotEnable"
+        }
 
-    -- { Language helper
-    use {'sheerun/vim-polyglot', cmd = 'PolyglotEnable'}
+        -- }
 
-    -- }
+        -- Tree file browser
+        use {
+            "kyazdani42/nvim-tree.lua",
+            requires = "kyazdani42/nvim-web-devicons"
+        }
+        require(
+            "configs.nvim-tree"
+        )
+        -- Status line
+        use {
+            "glepnir/galaxyline.nvim",
+            branch = "main",
+            -- your statusline
+            requires = {
+                "kyazdani42/nvim-web-devicons",
+                opt = true
+            }
+        }
+        require(
+            "configs.galaxyline"
+        )
 
-    -- Tree file browser
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons'
-}
-  require('configs.nvim-tree')
-   -- Status line
-   use {
-  'glepnir/galaxyline.nvim',
-    branch = 'main',
-    -- your statusline
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
-}
-  require('configs.galaxyline')
+        -- { Hightlight
 
-  -- { Hightlight
+        use {
+            "nvim-treesitter/nvim-treesitter"
+        }
+        use "nvim-treesitter/nvim-treesitter-refactor"
+        use "nvim-treesitter/nvim-treesitter-textobjects"
+        use "nvim-treesitter/playground"
+        use "p00f/nvim-ts-rainbow"
 
-    use {'nvim-treesitter/nvim-treesitter'}
-    use 'nvim-treesitter/nvim-treesitter-refactor'
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
-    use 'nvim-treesitter/playground'
-    use 'p00f/nvim-ts-rainbow'
+        require(
+            "configs.nvim-treesitter"
+        )
+        -- }
 
-    require('configs.nvim-treesitter')
-  -- }
+        -- {{{ Icons
+        use {
+            "ryanoasis/vim-devicons"
+        }
 
-    -- {{{ Icons
-    use {'ryanoasis/vim-devicons'}
+        use {
+            "kyazdani42/nvim-web-devicons"
+        }
+        require(
+            "configs.nvim-web-devicons"
+        )
+        -- }}}
 
-    use {'kyazdani42/nvim-web-devicons'}
-    require('configs.nvim-web-devicons')
-    -- }}}
+        -- { Editing
+        use {
+            "windwp/nvim-autopairs"
+        }
+        require(
+            "configs.nvim-autopairs"
+        )
 
+        use {
+            "norcalli/nvim-colorizer.lua"
+        }
+        require(
+            "configs.nvim-colorizer"
+        )
 
-    -- { Editing
-    use {'windwp/nvim-autopairs'}
-    require('configs.nvim-autopairs')
+        use "lukas-reineke/format.nvim"
+        require(
+            "configs.format-nvim"
+        )
 
-    use {'norcalli/nvim-colorizer.lua'}
-    require('configs.nvim-colorizer')
+        use "b3nj5m1n/kommentary"
+        require(
+            "configs.kommentary"
+        )
 
-    use 'lukas-reineke/format.nvim'
-    require('configs.format-nvim')
+        use {
+            "tommcdo/vim-lion"
+        }
 
-    use 'b3nj5m1n/kommentary'
-    require('configs.kommentary')
+        use {
+            "prettier/vim-prettier",
+            run = "yarn install",
+            ft = {
+                "javascript",
+                "typescript",
+                "css",
+                "less",
+                "scss",
+                "graphql",
+                "markdown",
+                "vue",
+                "html"
+            }
+        }
+        -- }
 
-    use {'tommcdo/vim-lion'}
+        -- {Navigation
+        use "phaazon/hop.nvim"
+        require(
+            "configs.hop-nvim"
+        )
 
-    use {
-        'prettier/vim-prettier',
-        run = 'yarn install',
-        ft = {'javascript', 'typescript', 'css', 'less', 'scss', 'graphql', 'markdown', 'vue', 'html'}
-    }
-    -- }
+        use {
+            "unblevable/quick-scope"
+        }
 
-    -- {Navigation
-    use 'phaazon/hop.nvim'
-    require('configs.hop-nvim')
+        use "psliwka/vim-smoothie"
 
-    use {'unblevable/quick-scope'}
+        -- }
 
-    use 'psliwka/vim-smoothie'
+        -- {Git
+        use {
+            "tpope/vim-fugitive"
+        }
+        use {
+            "junegunn/gv.vim"
+        }
+        -- }
 
-    -- }
+        -- Vim go
+        -- use 'fatih/vim-go'
 
-
-    -- {Git
-    use {'tpope/vim-fugitive'}
-    use {'junegunn/gv.vim'}
-    -- }
-
-    -- Vim go
-   -- use 'fatih/vim-go'
-
-
-    -- Other
-    use 'machakann/vim-sandwich'
-
-
-  end)
-
+        -- Other
+        use "machakann/vim-sandwich"
+    end
+)

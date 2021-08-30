@@ -3,7 +3,6 @@ require(
     "keymap"
 )
 
-
 -- setting
 require(
     "settings"
@@ -23,5 +22,3 @@ require(
 require(
     "lsp"
 )
-
-
