@@ -136,6 +136,7 @@ return require('packer').startup(function()
 
     -- {Navigation
     use 'phaazon/hop.nvim'
+    require('configs.hop-nvim')
 
     use {'unblevable/quick-scope'}
 

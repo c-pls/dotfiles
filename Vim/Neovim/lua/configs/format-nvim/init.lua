@@ -1,4 +1,4 @@
-local map = require('../../utils').map
+local map = require('utils').map
 require "format".setup {
     ["*"] = {
         {cmd = {"sed -i 's/[ \t]*$//'"}} -- remove trailing whitespace
