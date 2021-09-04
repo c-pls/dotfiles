@@ -1,5 +1,6 @@
-screen_shot=$HOME/tmp/locking_screen.png 
-overlay_img=$HOME/wallpaper/lock-icon/rick-and-morty-1.png # path to image
+screen_shot=$HOME/tmp/locking_screen.png
+#overlay_img=$HOME/wallpaper/lock-icon/levi.jpg
+overlay_img=$HOME/wallpaper/lock-icon/rick-and-morty-1.png
 screen_blur=$HOME/tmp/screen_blur.png
 lock_screen=$HOME/tmp/screen.png
 
