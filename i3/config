@@ -25,7 +25,7 @@ font pango:notosas 12
 exec --no-startup-id feh --bg-fill ~/wallpaper/wallhaven-pkkm6p.png
 #exec --no-startup-id hsetroot -center ~/wallpaper/wallhaven-pkkm6p.png
 exec --no-startup-id xsettingsd
-exec --no-startup-id pycom
+exec_always --no-startup-id exec picom &
 
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -43,11 +43,11 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym $mod+F8 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# set $refresh_i3status killall -SIGUSR1 i3status
+# bindsym $mod+F8 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -164,13 +164,23 @@ bindsym $mod+Shift+0 move container to workspace 10
 assign [class="Thunar"] $file_manager
 assign [class="Firefox" title="(?i)Private Browsing"] $igcognito
 for_window [title=".*\(Private Browsing\).*"] move to workspace $igcognito
+for_window[class="jetbrains-goland"] move to workspace $code
+for_window[class="Spotify"] move to workspace $music
+for_window[class="okular"] move to workspace $documents
 
 # Same keystroke to return the previous workspace
 workspace_auto_back_and_forth yes
+bindsym $mod+Tab workspace back_and_forth
+
+
+
 
 # floating pop up automatically
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
+for_window [class="Viewnior"] floating enable
+# for_window[class="Spotify"] floating enable
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -376,6 +386,15 @@ mode "$mode_display"{
   }
 
 bindsym $mod+Home mode "$mode_display"
+
+# screenshot using flameshot
+bindsym --release Print exec  flameshot screen -p $HOME/Pictures//screenshot/
+bindsym --release Shift+Print exec flameshot gui
+
+# use xpopr to check the instance
+
+
+
 
 
 
