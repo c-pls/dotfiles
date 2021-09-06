@@ -52,7 +52,7 @@ get_duration() {
 
 }
 
-KEY="a5b1878ad302e0a42f9e60eb37a5d883"
+KEY=Your API KEY
 CITY="1581130"
 UNITS="metric"
 SYMBOL="°"
