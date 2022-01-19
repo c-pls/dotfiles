@@ -1,0 +1,52 @@
+{
+  "editor.lineHeight": 0,
+  "editor.fontSize": 31,
+  "editor.fontLigatures": true,
+  "explorer.confirmDelete": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "bracket-pair-colorizer-2.depreciation-notice": false,
+  "window.zoomLevel": 1.8,
+  "workbench.colorCustomizations": {
+    "editorCursor.foreground": "#fff",
+    "terminalCursor.foreground": "#fff"
+  },
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "d"],
+      "after": ["d", "d"]
+    },
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false,
+    "<C-c>": false,
+    "<C-v>": false,
+    "<C-x>": false
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.renderLineHighlight": "none",
+  "glassit.alpha": 255,
+  "extensions.ignoreRecommendations": true,
+  "editor.fontFamily": "'Fira Code','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.codeLensFontFamily": "Fira Code",
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "terminal.integrated.fontSize": 21,
+  "workbench.tree.indent": 15
+}

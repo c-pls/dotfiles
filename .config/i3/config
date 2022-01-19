@@ -22,11 +22,12 @@ set $mod Mod4
 font pango:notosas 12
 
 #autostart
-exec --no-startup-id feh --bg-fill ~/wallpaper/wallhaven-pkkm6p.png
-#exec --no-startup-id hsetroot -center ~/wallpaper/wallhaven-pkkm6p.png
+exec_always --no-startup-id feh --bg-fill $($HOME/.config/i3/random_background.sh) 
+
+# exec watch -n 10 feh --randomize --bg-fill $HOME/Pictures/wallpaper/*
+
 exec --no-startup-id xsettingsd
 exec_always --no-startup-id exec picom &
-
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -126,53 +127,88 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 #
 # ----------------------Custom config workspace name --------------
-set $terms "1: Terms"
+set $term "1: Term"
 set $web "2: Web"
 set $code "3: Codes"
 set $file_manager "4: Files"
 set $music "5: Music"
 set $documents "6: Documents"
 set $db "7: Db"
-set $igcognito "8: Igcognito"
+set $incognito "8: Incognito"
+set $vid "9: Video"
 
 # switch to workspace
-bindsym $mod+1 workspace $terms
+bindsym $mod+1 workspace $term
 bindsym $mod+2 workspace $web
 bindsym $mod+3 workspace $code
 bindsym $mod+4 workspace $file_manager
 bindsym $mod+5 workspace $music
 bindsym $mod+6 workspace $documents
 bindsym $mod+7 workspace $db
-bindsym $mod+8 workspace $igcognito
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+8 workspace $incognito
+bindsym $mod+9 workspace $vid
+bindsym $mod+0 workspace 10 
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $terms
+bindsym $mod+Shift+1 move container to workspace $term
 bindsym $mod+Shift+2 move container to workspace $web
 bindsym $mod+Shift+3 move container to workspace $code
 bindsym $mod+Shift+4 move container to workspace $file_manager
 bindsym $mod+Shift+5 move container to workspace $music
 bindsym $mod+Shift+6 move container to workspace $documents
 bindsym $mod+Shift+7 move container to workspace $db
-bindsym $mod+Shift+8 move container to workspace $igcognito
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+8 move container to workspace $incognito
+bindsym $mod+Shift+9 move container to workspace $vid
 bindsym $mod+Shift+0 move container to workspace 10
 
 # --------------------------------------------------------------------
 # Assign programs to specific workspace
+# xprop | grep WM_CLASS to check the class of the application
 assign [class="Thunar"] $file_manager
-assign [class="Firefox" title="(?i)Private Browsing"] $igcognito
-for_window [title=".*\(Private Browsing\).*"] move to workspace $igcognito
+for_window[class="firefoxdeveloperedition"] move to workspace $web
+for_window[class="Google-chrome"] move to workspace $web
+
 for_window[class="jetbrains-goland"] move to workspace $code
+for_window[class="jetbrains-idea"] move to workspace $code
+for_window[class="Code"] move to workspace $code
+for_window[class="Atom"] move to workspace $code
+for_window[class="dolphin"] move to workspace $file_manager
 for_window[class="Spotify"] move to workspace $music
 for_window[class="okular"] move to workspace $documents
+for_window[class="pdf"] move to workspace $documents
+# wps thing
+for_window[class="wps"] move to workspace $documents
+# for_window[class="et"] move to workspace $documents
+# for_window[class="wpp"] move to workspace $documents
+# for_window[class="wpspdf"] move to workspace $documents
+# end of wps
+#
+for_window [title=".*\(Private Browsing\).*"] move to workspace $incognito
+for_window [title=".*\(InPrivate\).*"] move to workspace $incognito
+for_window[class="TelegramDesktop"] move to workspace $incognito
+
+for_window[class="Kodi"] move to workspace $vid
+for_window[class="vlc"] move to workspace $vid
+for_window[class="Microsoft Teams - Preview"] move to workspace $vid
+for_window[class="Valentina Studio"] move to workspace $db
+for_window[class="jetbrains-datagrip"] move to workspace $db
+for_window[class="Postman"] move to workspace $db
+for_window[class="Microsoft-edge"] move to workspace $vid
+
+for_window [instance="sun-awt-X11-XWindowPeer"] border pixel 0
+
 
 # Same keystroke to return the previous workspace
-workspace_auto_back_and_forth yes
+# workspace_auto_back_and_forth yes
 bindsym $mod+Tab workspace back_and_forth
 
 
+# Automatically putting workspaces on specific screens
+workspace $term output DP-1 eDP-1 
+workspace $web output DP-1 eDP-1 
+workspace $db output DP-1 eDP-1 
+workspace $incognito output eDP-1 DP-1
+workspace $vid output DP-1 eDP-1 
 
 
 # floating pop up automatically
@@ -181,6 +217,8 @@ for_window [window_role="task_dialog"] floating enable
 for_window [class="Viewnior"] floating enable
 # for_window[class="Spotify"] floating enable
 
+# Move workspace to monitor
+bindsym $mod+m move workspace to output right
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -197,10 +235,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -330,8 +368,8 @@ bar {
 # }
 
 exec_always --no-startup-id $HOME/.config/polybar/scripts/launch.sh
+# exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off
 
-# For multiple screen
 for_window [class="Arandr"] floating enable
 
 
@@ -339,6 +377,7 @@ for_window [class="Arandr"] floating enable
 bindsym $mod+F10 exec pactl set-sink-mute @DEFAULT_SINK@ toggle # Mute
 bindsym $mod+F11 exec pactl set-sink-volume @DEFAULT_SINK@ -5%  # Up
 bindsym $mod+F12 exec pactl set-sink-volume @DEFAULT_SINK@ +5%  # Down
+
 # Using the frontend ncpamixer instead
 bindsym $mod+F9  exec sh $HOME/.config/i3/toggle_sink.sh
 
@@ -347,13 +386,11 @@ bindsym $mod+F9  exec sh $HOME/.config/i3/toggle_sink.sh
 
 #---------------------------------Lock Wall ----------------------
 
-set $i3lockwall exec i3lock -b -i $HOME/lockscreen.png
-bindsym $mod+Ctrl+Shift+l exec --no-startup-id $i3lockwall
-
+set $i3lockwall exec i3lock -b -i $($HOME/.config/i3/random_background.sh) 
 bindsym $mod+t exec sh ~/.config/i3/lock.sh
 
 # wallpaper
-
+bindsym $mod+p exec sh ~/.config/i3/rbg.sh
 
 # shutdown / restart / suspend...
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
@@ -376,10 +413,11 @@ bindsym $mod+BackSpace mode "$mode_system"
 
 
 #
-set $mode_display Config monitor - At home (h)
+set $mode_display Config monitor - At home (h), OnlyDP (o)
 
 mode "$mode_display"{
     bindsym h exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off, mode"default"
+    bindsym o exec --no-startup-id xrandr --output eDP-1 --off --output DP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DP-2 --off --output HDMI-2 --off 
 
 # back to normal
  bindsym Escape mode "default"
@@ -389,13 +427,16 @@ bindsym $mod+Home mode "$mode_display"
 
 # screenshot using flameshot
 bindsym --release Print exec  flameshot screen -p $HOME/Pictures//screenshot/
-bindsym --release Shift+Print exec flameshot gui
+bindsym --release $mod+Print exec flameshot gui
 
 # use xpopr to check the instance
 
 
+# Next song on Spotify
+bindsym CTRL+Right exec playerctl --player=spotify next spotify
+bindsym CTRL+Left exec playerctl --player=spotify previous spotify
+bindsym CTRL+Shift+space exec playerctl --player=spotify play-pause
 
-
-
-
+# Telegram at startup
+exec_always --no-startup-id exec telegram-desktop
 
