@@ -68,9 +68,9 @@ end
 -- map('n', '<leader>fh','<cmd>:lua require('telescope.builtin').help_tags()<CR>')
 
 map_telescope('b', 'buffers')
-map_telescope('i', 'find_files')
-map_telescope('s', 'live_grep')
-map_telescope('c', 'commands')
+map_telescope('ff', 'find_files')
+map_telescope('fg', 'live_grep')
+map_telescope('fc', 'commands')
 
 map_telescope('fh', 'help_tags')
 map_telescope('fb', 'file_browser')
@@ -79,7 +79,6 @@ map_telescope('fvo', 'vim_options')
 map_telescope('fts', 'treesitter')
 map_telescope('fkm', 'keymaps')
 map_telescope('fcs', 'colorscheme')
-
 
 
 map_telescope('lt', 'builtin')

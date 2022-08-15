@@ -1,7 +1,7 @@
 --local utils = require('utils')
 
 local set = vim.opt
-cmd = vim.cmd
+local cmd = vim.cmd
 
 local indent, width = 2, 80
 
@@ -44,8 +44,9 @@ set.breakindent = true
 
 
 -- Vim scripts
-vim.api.nvim_exec('hi Comment ctermfg=46 guifg=#00ff00 "rgb=0,255,0', false)
 
+cmd[[au VimEnter * highlight ColorColumn guibg=#20B2AA]]
+cmd[[au VimEnter * highlight Comment ctermfg=46 guibg=#7FFF00]]
 
 vim.api.nvim_exec([[
 filetype on
