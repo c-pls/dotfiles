@@ -40,6 +40,9 @@ dynamic_title = true
   [window.class]
   instance = "Alacritty"
   general = "Alacritty"
+[shell]
+  program = "/opt/homebrew/bin/fish"
+  args = ["--login"]
 
 [font]
 size = 15
