@@ -1,0 +1,97 @@
+# [[key_bindings]]
+# key = "V"
+# mods = "Control|Shift"
+# action = "Paste"
+
+# [[key_bindings]]
+# key = "C"
+# mods = "Control|Shift"
+# action = "Copy"
+
+# [[key_bindings]]
+# key = "N"
+# mods = "Control|Shift"
+# action = "SpawnNewInstance"
+
+# [[key_bindings]]
+# key = "Equals"
+# mods = "Control"
+# action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "F11"
+mods = "None"
+action = "ToggleFullscreen"
+
+[window]
+decorations = "full"
+startup_mode = "Windowed"
+title = "Alacritty"
+dynamic_title = true
+
+  [window.dimensions]
+  columns = 100
+  lines = 30
+
+  [window.padding]
+  x = 2
+  y = 2
+
+  [window.class]
+  instance = "Alacritty"
+  general = "Alacritty"
+
+[font]
+size = 15
+
+  [font.normal]
+  family = "Fira Code"
+  style = "Regular"
+
+  [font.bold]
+  family = "Fira Code"
+  style = "Bold"
+
+  [font.italic]
+  family = "Fira Code"
+  style = "Italic"
+
+  [font.bold_italic]
+  family = "Fira Code"
+  style = "Bold Italic"
+
+  [font.offset]
+  x = 0
+  y = 1
+
+[colors.bright]
+black = "#001e27"
+blue = "#006fc0"
+cyan = "#005794"
+green = "#1d9000"
+magenta = "#a200da"
+red = "#e1003f"
+white = "#e2e2e2"
+yellow = "#cd9409"
+
+[colors.cursor]
+cursor = "#708284"
+text = "#002831"
+
+[colors.normal]
+black = "#002831"
+blue = "#359ddf"
+cyan = "#4b73a2"
+green = "#5eb83c"
+magenta = "#d75cff"
+red = "#e63853"
+white = "#dcdcdc"
+yellow = "#a57706"
+
+[colors.primary]
+background = "#0e1011"
+foreground = "#7c8fa4"
+
+[colors.selection]
+background = "#163c61"
+text = "#f2f5f9"
